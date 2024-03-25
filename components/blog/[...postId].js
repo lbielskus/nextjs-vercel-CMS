@@ -1,14 +1,14 @@
-const connectToMongoDB = async () => {
+export const connectToMongoDB = async () => {
   try {
     const { connectToMongoDB } = await import('../../lib/mongodb');
     return connectToMongoDB();
   } catch (error) {
-    console.error('Error importing MongoDB module:', error);
+    console.error('Error connecting to MongoDB:', error);
     throw error; // Rethrow the error to propagate it further
   }
 };
 
-const getBlogPostModel = async () => {
+export const getBlogPostModel = async () => {
   try {
     const { default: BlogPost } = await import('../../models/Blog');
     return BlogPost;
@@ -38,13 +38,17 @@ export default async function handler(req, res) {
           return res.status(200).json(post);
         } catch (error) {
           console.error('Error fetching blog post:', error);
-          return res.status(500).json({ error: 'Internal server error' });
+          return res
+            .status(500)
+            .json({ error: 'Internal server error while fetching post' });
         }
       default:
         return res.status(405).end(`Method ${method} Not Allowed`);
     }
   } catch (error) {
     console.error('Error connecting to database:', error);
-    return res.status(500).json({ error: 'Internal server error' });
+    return res
+      .status(500)
+      .json({ error: 'Internal server error while connecting to database' });
   }
 }
