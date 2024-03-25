@@ -1,4 +1,4 @@
-import Product from '../../components/Product';
+import Product from '../../../components/Product';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';

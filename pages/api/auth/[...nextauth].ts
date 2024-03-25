@@ -2,7 +2,7 @@ import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { connectToMongoDB } from '../../../lib/mongodb';
 import User from '../../../models/User';
-import { IUser } from '../../types';
+import { IUser } from '../../../types';
 import { compare } from 'bcryptjs';
 
 const options: NextAuthOptions = {

@@ -2,8 +2,8 @@ import '../styles/globals.css';
 import { SessionProvider } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { Poppins } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 

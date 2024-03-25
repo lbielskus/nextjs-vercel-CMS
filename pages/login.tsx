@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import LoginForm from './components/Form/LoginForm';
+import LoginForm from '../components/Form/LoginForm';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import restrictAccess from '../pages/utils/auth';
+import restrictAccess from '../utils/auth';
 
 const Login = () => {
   const { data: session } = useSession();

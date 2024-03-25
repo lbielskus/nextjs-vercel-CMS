@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { hash } from 'bcryptjs';
 import { connectToMongoDB } from '../../../lib/mongodb';
 import User from '../../../models/User';
-import { IUser } from '../../types';
+import { IUser } from '../../../types';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {

@@ -7,7 +7,7 @@ import {
   ShowPassIcon,
   Wrapper,
   ErrorText,
-} from './InputFieldElements';
+} from '../../types/InputFieldElements';
 
 const InputFeild = ({
   placeholder,

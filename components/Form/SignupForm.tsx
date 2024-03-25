@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { BsPerson } from 'react-icons/bs';
 import { AiOutlineMail, AiOutlineUnlock } from 'react-icons/ai';
 import { RiLockPasswordLine } from 'react-icons/ri';
-// import AppLogoTitle from '../AppLogoTitle';
+
 import {
   Container,
   Form,
@@ -10,7 +10,7 @@ import {
   InfoText,
   InfoTextContainer,
   Link,
-} from './FormmElements';
+} from '../../types/FormmElements';
 
 import Button from '../Button';
 import InputField from './InputField';
@@ -18,7 +18,7 @@ import { InputErros } from '../../types/error';
 import { getErrorMsg, loginUser } from '../../helpers';
 import { useRouter } from 'next/router';
 import axios, { AxiosError } from 'axios';
-import { ErrorText } from '../Form/InputFieldElements';
+import { ErrorText } from '../../types/InputFieldElements';
 
 const SignupForm = () => {
   const [data, setData] = useState({

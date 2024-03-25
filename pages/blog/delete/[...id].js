@@ -1,4 +1,4 @@
-import Blog from '../../components/Blog';
+import Blog from '../../../components/Blog';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
