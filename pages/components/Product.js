@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Spinner from './Spinner';
 import { ReactSortable } from 'react-sortablejs';
 import toast from 'react-hot-toast';
+import Image from 'next/image';
 
 export default function Product({
   _id,
@@ -200,10 +201,12 @@ export default function Product({
               >
                 {images?.map((link, index) => (
                   <div key={link} className='relative group'>
-                    <img
+                    <Image
                       src={link}
                       alt='image'
-                      className='object-cover h-32 w-44 rounded-md border p-2 cursor-pointer transition-transform transform-gpu group-hover:scale-105'
+                      width={400} // Adjust width and height as needed
+                      height={300}
+                      className='object-cover rounded-md border p-2 cursor-pointer transition-transform transform-gpu group-hover:scale-105'
                     />
                     <div className='absolute top-2 right-2 cursor-pointer opacity-0 group-hover:opacity-100'>
                       <button onClick={() => handleDeleteImage(index)}>

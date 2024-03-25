@@ -10,7 +10,7 @@ import {
   InfoText,
   InfoTextContainer,
   Link,
-} from './FormElements';
+} from './FormmElements';
 
 import Button from '../Button';
 import InputField from './InputField';

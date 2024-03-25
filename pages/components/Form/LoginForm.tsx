@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation';
 import { loginUser } from '../../helpers';
 import { AiOutlineMail, AiOutlineUnlock } from 'react-icons/ai';
 import Link from 'next/link';
+import Image from 'next/image'; // Import Image component from next/image
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -30,6 +31,8 @@ const LoginForm = () => {
       if (loginRes && !loginRes.ok) {
         setSubmitError(loginRes.error || '');
       } else {
+        // Redirect after successful login
+        window.location.href = '/';
       }
     } catch (error) {
       setSubmitError('An error occurred. Please try again later.');
@@ -39,8 +42,9 @@ const LoginForm = () => {
   };
 
   useEffect(() => {
+    // Redirect if user is logged in and no errors
     if (!loading && submitError === '' && email !== '' && password !== '') {
-      window.location.href = '/';
+      window.history.pushState(null, '', '/');
     }
   }, [loading, submitError]);
 
@@ -51,9 +55,11 @@ const LoginForm = () => {
           className='mb-10 flex gap-1 items-center text-text font-medium text-lg hover:text-zinc-400 '
           href='/'
         >
-          <img
+          <Image
             src='https://res.cloudinary.com/dcknlnne1/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1709827936/favicon-32x32_rllh9h.jpg?_s=public-apps'
             alt='Logo'
+            width={28}
+            height={28}
             className='h-7 w-7'
           />
           <span className='text-purple'> CMS</span>
