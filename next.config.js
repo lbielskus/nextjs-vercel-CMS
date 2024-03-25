@@ -7,16 +7,12 @@ const nextConfig = {
 
   exclude: [
     '/pages/components/Button/ButtonElements.ts',
-
-    '/pages/components/Button/ButtonElements.ts',
     '/pages/components/Form/FormElements.ts',
     '/pages/components/Form/FormmElements.ts',
     '/pages/components/Form/InputFieldElements.ts',
-    'pages/helpers/',
-    '/pages/types/error.ts',
+    '/pages/helpers/error.ts',
     '/pages/types/',
     '/pages/types/propTypes.ts',
-
     '/pages/utils/dbUtils/',
   ],
 };
