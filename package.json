@@ -11,7 +11,8 @@
   "dependencies": {
     "@auth/mongodb-adapter": "^2.0.2",
     "axios": "^1.5.1",
-    "cloudinary": "^1.41.0",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.41.3",
     "cordova-plugin-file": "^8.0.0",
     "mongodb": "^6.4.0",
     "mongoose": "^7.6.3",
@@ -21,11 +22,15 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
+    "react-icons": "^5.0.1",
     "react-sortable": "^2.0.0",
     "react-sortablejs": "^6.1.4",
-    "react-spinners": "^0.13.8"
+    "react-spinners": "^0.13.8",
+    "styled-components": "^6.1.8"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/react": "18.2.69",
     "autoprefixer": "^10",
     "eslint": "^8",
     "eslint-config-next": "13.5.6",

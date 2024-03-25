@@ -1,6 +1,6 @@
 import multiparty from 'multiparty';
 import cloudinary from 'cloudinary';
-import {mongooseConnect} from "@/lib/mongoose";
+import { mongooseConnect } from '../../lib/mongoose';
 
 cloudinary.v2.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -22,7 +22,7 @@ export default async function handle(req, res) {
   const links = [];
   for (const file of files.file) {
     const result = await cloudinary.v2.uploader.upload(file.path, {
-      folder: 'next-commerce', 
+      folder: 'ecommerce-app',
       public_id: `file_${Date.now()}`,
       resource_type: 'auto',
     });

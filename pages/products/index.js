@@ -1,31 +1,32 @@
+import { useSession } from 'next-auth/react';
 import axios from 'axios';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import img1 from '@/public/product.png';
+import img1 from '../../public/product.png';
 
-// Utility function to format price with a comma for thousands
 const formatPrice = (price) => {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
-const pageSize = 10; // Number of products per page
+const pageSize = 10;
 
 export default function Product() {
+  const { data: session } = useSession();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    axios.get('/api/products').then((response) => {
-      setProducts(response.data);
-      setLoading(false);
-    });
-  }, []);
+    if (session) {
+      axios.get('/api/products').then((response) => {
+        setProducts(response.data);
+        setLoading(false);
+      });
+    }
+  }, [session]);
 
-  // Calculate the total number of pages
   const totalPages = Math.ceil(products.length / pageSize);
 
-  // Calculate the start and end index for the current page
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = Math.min(currentPage * pageSize, products.length);
 
@@ -35,6 +36,10 @@ export default function Product() {
     setCurrentPage(page);
     setLoading(false);
   };
+
+  if (!session) {
+    return null;
+  }
 
   return (
     <>
@@ -65,8 +70,8 @@ export default function Product() {
                   className='w-6 h-6'
                 >
                   <path
-                    stroke-linecap='round'
-                    stroke-linejoin='round'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
                     d='M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z'
                   />
                 </svg>
@@ -78,13 +83,13 @@ export default function Product() {
         </div>
       </header>
 
-      <div className='overflow-x-auto mx-auto px-4'>
+      <div className={`overflow-x-auto mx-auto px-4 `}>
         {products.length === 0 ? (
           <p className='w-full text-center'>No products available.</p>
         ) : (
           <>
-            <table className='min-w-full divide-y-2 divide-gray-200 bg-white text-md border rounded'>
-              <thead>{/* Table headers here */}</thead>
+            <table className='min-w-full divide-y-2 divide-gray-200 bg-white text-md border rounded mb-44'>
+              <thead>{/* Table header */}</thead>
               {productsToDisplay.map((product, index) => (
                 <tbody className='divide-y divide-gray-200' key={product._id}>
                   <tr>
@@ -92,9 +97,9 @@ export default function Product() {
                       {index + 1}
                     </td>
                     <td className='whitespace-nowrap px-4 py-2 font-medium text-gray-900 flex items-center  gap-1'>
-                      <div class='h-10 w-10'>
+                      <div className='h-10 w-10'>
                         <img
-                          class='h-full w-full rounded-full object-cover object-center bg-gray-200'
+                          className='h-full w-full rounded-full object-cover object-center bg-gray-200'
                           src={product.images?.[0] || img1}
                           alt={product.title}
                         />
@@ -126,7 +131,7 @@ export default function Product() {
               ))}
             </table>
 
-            {/* Pagination controls */}
+            {/* Pagination */}
             {totalPages > 1 && (
               <div className='flex justify-center mt-4'>
                 {Array.from({ length: totalPages }, (_, i) => (

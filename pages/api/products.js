@@ -1,5 +1,5 @@
-import { mongooseConnect } from '@/lib/mongoose';
-import { Product } from '@/models/Product';
+import { mongooseConnect } from '../../lib/mongoose';
+import { Product } from '../../models/Product';
 
 export default async function handle(req, res) {
   const { method } = req;
@@ -7,7 +7,18 @@ export default async function handle(req, res) {
   await mongooseConnect();
 
   if (method === 'POST') {
-    const { title, description, price, images, category,details, brand, gender, sizes, colors } = req.body;
+    const {
+      title,
+      description,
+      price,
+      images,
+      category,
+      details,
+      brand,
+      gender,
+      sizes,
+      colors,
+    } = req.body;
 
     const productDoc = await Product.create({
       title,
@@ -16,8 +27,11 @@ export default async function handle(req, res) {
       images,
       category,
       details,
-      brand, gender, sizes, colors
-    })
+      brand,
+      gender,
+      sizes,
+      colors,
+    });
 
     res.json(productDoc);
   }
@@ -26,23 +40,46 @@ export default async function handle(req, res) {
     if (req.query?.id) {
       res.json(await Product.findOne({ _id: req.query.id }));
     } else {
-
       res.json(await Product.find());
     }
   }
 
   if (method === 'PUT') {
-    const { title, description, price, _id, images, category,details, brand, gender, sizes, colors } = req.body;
-    await Product.updateOne({ _id }, {
-      title, description, price, images, category,details, brand, gender, sizes, colors
-    });
+    const {
+      title,
+      description,
+      price,
+      _id,
+      images,
+      category,
+      details,
+      brand,
+      gender,
+      sizes,
+      colors,
+    } = req.body;
+    await Product.updateOne(
+      { _id },
+      {
+        title,
+        description,
+        price,
+        images,
+        category,
+        details,
+        brand,
+        gender,
+        sizes,
+        colors,
+      }
+    );
     res.json(true);
   }
 
   if (method === 'DELETE') {
     if (req.query?.id) {
-      await Product.deleteOne({_id:req.query?.id});
-      res.json(true)
+      await Product.deleteOne({ _id: req.query?.id });
+      res.json(true);
     }
   }
 }
